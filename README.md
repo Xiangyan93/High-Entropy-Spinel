@@ -19,4 +19,4 @@ Database Creation, data import and export.
         ```
 
 ## Machine Learning
-See [notebook](https://github.com/Xiangyan93/HighEntropySpinel/tree/main/notebook).
+See [notebook](https://github.com/Xiangyan93/High-Entropy-Spinel/tree/master/notebook).
