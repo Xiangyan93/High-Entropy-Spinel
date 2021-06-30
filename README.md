@@ -5,18 +5,22 @@ A database and machine learning model for high entropy spinel.
 Database Creation, data import and export.
    1. Create the database.
         ```
-        python3 database/db_create.py
+        python create.py
         ```
    2. Import experimental data.
         ```
-        python3 database/import_data.py -i datasets/sample1.txt --property Stabilized
-        python3 database/import_data.py -i datasets/sample2.txt --property Stabilized
-        python3 database/import_data.py -i datasets/sample3.txt --property Stabilized --remark KS
+        python import.py --input data/sample1.csv --property Stabilized
+        python import.py --input data/sample2.csv --property Stabilized
+        python import.py --input data/sample3.csv --property Stabilized --remark KS
+        python import.py --input data/sample4.csv --property T20
         ```
    3. Export experimental data
         ```
-        python3 database/export_data.py --property Stabilized
+        python export.py --property Stabilized
         ```
-
+   4. Active Learning
+        ```
+        python3 active_learning.py --n_samples 5
+        ```
 ## Machine Learning
 See [notebook](https://github.com/Xiangyan93/High-Entropy-Spinel/tree/master/notebook).

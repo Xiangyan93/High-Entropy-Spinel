@@ -3,8 +3,9 @@
 """
 Database engine
 """
-
+from typing import Dict, Iterator, List, Optional, Union, Literal, Tuple
 import os
+import json
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy import create_engine, exists, and_
@@ -14,7 +15,7 @@ CWD = os.path.dirname(os.path.abspath(__file__))
 Base = declarative_base()
 metadata = Base.metadata
 
-db_file = 'sqlite:///%s/hes.db' % CWD
+db_file = 'sqlite:///%s/../../data/hes.db' % CWD
 
 engine = create_engine(db_file, echo=False)
 Session = sessionmaker(engine)
@@ -39,7 +40,7 @@ class Sample(Base):
     Ba = Column(Integer, default=0)
     Sr = Column(Integer, default=0)
     remark = Column(Text)
-    property = Column(Text)
+    info = Column(Text)
 
     def get_atom_list(self):
         atom_list = [12] * self.Mg + [13] * self.Al + [20] * self.Ca + \
@@ -48,6 +49,13 @@ class Sample(Base):
                     [28] * self.Ni + [29] * self.Cu + [30] * self.Zn + \
                     [38] * self.Sr + [56] * self.Ba
         return atom_list
+
+    @property
+    def is_stabilized(self) -> Optional[int]:
+        if self.property is None:
+            return None
+        else:
+            return json.loads(self.property)['Stabilized']
 
 
 metadata.create_all(engine)
