@@ -26,11 +26,17 @@ def import_data(atom_list, target, property='target', atom_ratio=None,
         s.remark = remark
 
 
-def main(args: ImportArgs):
+def main(args: ImportArgs, atom_dict_full):
     df = pd.read_csv(args.input)
     for a in df['atom_list']:
         print(a.split(','))
-    df['atom_list'] = df['atom_list'].apply(lambda x: list(map(int, x.split(','))))
+    atom_dict_full = {v: k for k, v in atom_dict_full.items()}
+    def f(x):
+        if x in atom_dict_full:
+            return atom_dict_full[x]
+        else:
+            return int(x)
+    df['atom_list'] = df['atom_list'].apply(lambda x: list(map(f, x.split(','))))
     tqdm.pandas()
     df.progress_apply(lambda x: import_data(x['atom_list'], x[args.property],
                                             property=args.property,
@@ -40,4 +46,4 @@ def main(args: ImportArgs):
 
 
 if __name__ == '__main__':
-    main(args=ImportArgs().parse_args())
+    main(args=ImportArgs().parse_args(), atom_dict_full=atom_dict_full)

@@ -8,11 +8,13 @@ from tap import Tap
 
 atom_dict_full = {12: 'Mg', 13: 'Al', 20: 'Ca', 22: 'Ti', 23: 'V', 24: 'Cr',
                   25: 'Mn', 26: 'Fe', 27: 'Co', 28: 'Ni', 29: 'Cu', 30: 'Zn',
-                  38: 'Sr', 56: 'Ba'}
+                  31: 'Ga', 38: 'Sr', 40: 'Zr', 41: 'Nb', 42: 'Mo', 48: 'Cd',
+                  49: 'In', 56: 'Ba', 58: 'Ce', 62: 'Sm', 64: 'Gd', 74: 'W'}
 
 
 class CreateArgs(Tap):
     elements: List[int] = [12, 13, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 38, 56]
+    # 12 13 22 23 24 25 26 27 28 29 30 31 40 41 42 48 49 58 62 64 74
     """Elements used to create database."""
     n_elements: Tuple[int, int] = (5, 10)
     """TODO"""
