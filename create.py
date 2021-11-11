@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from tqdm import tqdm
 import sys
+import json
 from itertools import combinations, product
 from hes.args import CreateArgs
 from hes.database.models import *
@@ -26,14 +27,14 @@ def create(args: CreateArgs):
     atom_dict = args.atom_dict
     # contain 5-11 types of metal atom
     n = 0
-    for i in range(5, 11):
+    for i in range(args.n_elements[0], args.n_elements[1] + 1):
         print("\nProcessing %i-components" % i)
         compositions = [c for c in list(product(range(1, args.n_max_occurance + 1), repeat=i)) if IsValidList(c)]
         combination = list(combinations(atom_dict.values(), i))
         for j, an in tqdm(enumerate(combination), total=len(combination)):
             n += len(compositions)
             for c in compositions:
-                sample = Sample(**dict(zip(an, c)))
+                sample = Sample(composition=json.dumps(dict(zip(an, c))))
                 session.add(sample)
                 n += 1
     session.commit()
