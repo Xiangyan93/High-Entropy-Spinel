@@ -9,17 +9,18 @@ Database Creation, data import and export.
         ```
    2. Import experimental data.
         ```
-        python import.py --input data/case2/5.csv --property Stabilized
-        python import.py --input data/case2/6.csv --property Stabilized
-        python import.py --input data/case2/7.csv --property Stabilized
-        python import.py --input data/case2/8.csv --property Stabilized
-        python import.py --input data/case2/9.csv --property Stabilized
-        python import.py --input data/case2/10.csv --property Stabilized
+        python import.py --input data/case2/KS.csv --property purity --remark KS
+        python import.py --input data/case2/5.csv --property purity
+        python import.py --input data/case2/6.csv --property purity
+        python import.py --input data/case2/7.csv --property purity
+        python import.py --input data/case2/8.csv --property purity
+        python import.py --input data/case2/9.csv --property purity
+        python import.py --input data/case2/10.csv --property purity
         python import.py --input data/case2/catalyst.csv --property T90
         ```
    3. Export experimental data
         ```
-        python export.py --property Stabilized
+        python export.py --property purity
         ```
    4. Active Learning
         ```

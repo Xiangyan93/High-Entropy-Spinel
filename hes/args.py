@@ -36,8 +36,10 @@ class ImportArgs(Tap):
 
 
 class ExportArgs(Tap):
-    property: str
+    property: str = None
     """The target property name."""
+    export_all: bool = False
+    """export all data"""
 
 
 class ActiveLearningArgs(CreateArgs):
